@@ -1,3 +1,7 @@
+# https://github.com/Gautampillai/lab11-GP-PS
+# Partner 1: Gautam Pillai
+# Partner 2: Priya Schramm
+
 import unittest
 from calculator import *
 
@@ -13,12 +17,16 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(sub(5, 2), 3)
 
     ######## Partner 1
-    # def test_multiply(self): # 3 assertions
-    #     fill in code
+    def test_multiply(self): # 3 assertions
+        self.assertEqual(mul(1,3), 3.0)
+        self.assertEqual(mul(1, 0), 0.0)
+        self.assertAlmostEqual(mul(-4.0, 0.25000001), -1.0)
 
-    # def test_divide(self): # 3 assertions
-    #     fill in code
-    # ##########################
+    def test_divide(self): # 3 assertions
+        self.assertEqual(div(1,19),19.0)
+        self.assertEqual(div(2, -3), -1.5)
+        with self.assertRaises(ZeroDivisionError):
+            div(0, 20)
 
     def test_divide_by_zero(self): # 1 assertion
         with self.assertRaises(ZeroDivisionError):
@@ -37,22 +45,20 @@ class TestCalculator(unittest.TestCase):
             log(1, -10)
 
     ######## Partner 1
-    # def test_log_invalid_argument(self): # 1 assertion
-    #     # call log function inside, example:
-    #     # with self.assertRaises(<INSERT_ERROR_TYPE>):
-    #     #     logarithm(0, 5)
-    #     fill in code
+    def test_log_invalid_argument(self): # 1 assertion
+        with self.assertRaises(ValueError):
+            log(0, 5)
 
-    # def test_hypotenuse(self): # 3 assertions
-    #     fill in code
+    def test_hypotenuse(self): # 3 assertions
+        self.assertEqual(hypotenuse(3, 4), 5.0)
+        self.assertEqual(hypotenuse(6, 8), 10.0)
+        self.assertEqual(hypotenuse(-4, -3), 5.0)
 
-    # def test_sqrt(self): # 3 assertions
-    #     # Test for invalid argument, example:
-    #     # with self.assertRaises(<INSERT_ERROR_TYPE>):
-    #     #    square_root(NUM)
-    #     # Test basic function
-    #     fill in code
-    ##########################
+    def test_sqrt(self): # 3 assertions
+        with self.assertRaises(ValueError):
+            square_root(-25)
+        self.assertEqual(square_root(25),5.0)
+        self.assertAlmostEqual(square_root(3),1.7320508)
 
 if __name__ == "__main__":
     unittest.main()
